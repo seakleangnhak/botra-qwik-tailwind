@@ -4,6 +4,11 @@ import BrandHomeItem from '~/components/brand/brand-home-item';
 import CategoryHomeItem from '~/components/category/category-home-item';
 import ProductSection from '~/components/product/product-section';
 
+// interface homeProps {
+//   showBrand: boolean
+//   showCategory: boolean
+// }
+
 export default component$(() => {
   return (
     // hero
@@ -13,6 +18,7 @@ export default component$(() => {
         class="h-[calc(100vw*0.7)] lg:h-[calc(100vh-250px)] max-h-[calc(100vh-250px)] bg-slate-400 bg-cover bg-center bg-fixed">
       </div>
       <div class="max-w-screen-xl xl:mx-auto mx-2 md:mx-4 lg:mx-16 mt-4">
+
         {/* category */}
         <h5 class="text-blue-800 underline underline-offset-[12px]">Categories</h5>
         <div class="mt-4 grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">

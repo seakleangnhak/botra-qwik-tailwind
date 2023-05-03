@@ -5,11 +5,11 @@ import ProductItem from "~/components/product/product-item";
 
 export default component$(() => {
     return (
-        <div class="flex mt-4 justify-center max-w-screen-xl mx-auto gap-4">
-            <div class="w-[400px]">
+        <div class="md:flex mt-4 justify-center max-w-screen-xl md:mx-auto px-4 gap-4">
+            <div class="md:w-[400px] mx-auto md:mx-0 my-2">
                 <ProductItem />
             </div>
-            <div class="min-w-[400px]">
+            <div class="md:min-w-[400px] mx-auto md:mx-0 my-2">
                 <ProductDescription />
             </div>
         </div>
