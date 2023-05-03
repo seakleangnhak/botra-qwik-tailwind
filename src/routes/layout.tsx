@@ -9,7 +9,7 @@ export default component$(() => {
   return (
     <>
       <Header />
-      <main class="relative h-[2000px]">
+      <main class="pb-4">
         <Slot />
       </main>
       <Footer />

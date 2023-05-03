@@ -2,7 +2,7 @@ import { component$ } from '@builder.io/qwik';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import BrandHomeItem from '~/components/brand/brand-home-item';
 import CategoryHomeItem from '~/components/category/category-home-item';
-import ProductItem from '~/components/product/product-item';
+import ProductSection from '~/components/product/product-section';
 
 export default component$(() => {
   return (
@@ -47,19 +47,7 @@ export default component$(() => {
         </div>
 
         {/* best seller */}
-        <h5 class="text-orange-500 underline underline-offset-[12px] mt-4">Best seller</h5>
-        <div class="mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4">
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-          <ProductItem />
-        </div>
+        <ProductSection />
       </div>
     </>
   );
