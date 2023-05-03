@@ -6,9 +6,9 @@ export default component$(() => {
         <header class="sticky top-0 z-50 text-zinc-100">
             <nav class="flex lg:px-20 bg-gradient-to-r from-blue-800 to-blue-700">
                 {/* Logo */}
-                <a href="/">
+                <a aria-label="Logo" href="/">
                     <div class="hidden md:flex p-2 ml-2 gap-4 items-center">
-                        <img src="/favicon.svg" width="40" />
+                        <img alt="BotraComputer Logo" src="/favicon.svg" width="40" />
                         <div class="font-bold text-2xl">
                             Botra<span class="text-sky-300">Computer</span>
                         </div>
@@ -17,7 +17,7 @@ export default component$(() => {
 
                 {/* menu items */}
                 <div class="flex-1 flex md:mx-4 justify-center md:justify-end">
-                    <a href="/"><MenuItem>Home</MenuItem></a>
+                    <a aria-label="Home" href="/"><MenuItem>Home</MenuItem></a>
                     <a href="/brand"><MenuItem>Brand</MenuItem></a>
                     <a href="/category"><MenuItem>Category</MenuItem></a>
                     <div class="hidden md:block">

@@ -4,7 +4,7 @@ export default component$(() => {
     return (
         <a href="/product">
             <div class="border-[2px] border-blue-600 rounded-md cursor-pointer hover:shadow-lg ease-in-out hover:-translate-y-1 transition-all">
-                <img src="/favicon.svg" class="w-full" />
+                <img alt="Product Name" src="/favicon.svg" class="w-full" />
                 <div class="flex justify-between px-[6px] text-base">
                     <span>Product name</span>
                     <span>$24</span>
