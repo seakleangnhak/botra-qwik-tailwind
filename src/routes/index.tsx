@@ -14,7 +14,7 @@ export default component$(() => {
       </div>
       <div class="max-w-screen-xl xl:mx-auto mx-2 md:mx-4 lg:mx-16 mt-4">
         {/* category */}
-        <h5 class="text-orange-500 underline underline-offset-[12px]">Categories</h5>
+        <h5 class="text-blue-800 underline underline-offset-[12px]">Categories</h5>
         <div class="mt-4 grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
           <CategoryHomeItem />
           <CategoryHomeItem />
@@ -32,7 +32,7 @@ export default component$(() => {
         </div>
 
         {/* brand */}
-        <h5 class="text-orange-500 underline underline-offset-[12px] mt-4">Brand</h5>
+        <h5 class="text-blue-800 underline underline-offset-[12px] mt-4">Brand</h5>
         <div class="mt-4 grid lg:grid-cols-7 md:grid-cols-5 grid-cols-3 gap-4">
           <BrandHomeItem />
           <BrandHomeItem />
