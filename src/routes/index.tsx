@@ -3,6 +3,7 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import BrandHomeItem from '~/components/brand/brand-home-item';
 import CategoryHomeItem from '~/components/category/category-home-item';
 import ProductSection from '~/components/product/product-section';
+import { useBrandData, useCategoryData } from './layout';
 
 // interface homeProps {
 //   showBrand: boolean
@@ -10,6 +11,10 @@ import ProductSection from '~/components/product/product-section';
 // }
 
 export default component$(() => {
+
+  const brandSignal = useBrandData()
+  const categorySignal = useCategoryData()
+
   return (
     // hero
     <>
@@ -22,34 +27,17 @@ export default component$(() => {
         {/* category */}
         <h5 class="text-blue-800 underline underline-offset-[12px]">Categories</h5>
         <div class="mt-4 grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
-          <CategoryHomeItem />
+          {
+            categorySignal.value.map(category => <CategoryHomeItem category={category} />)
+          }
         </div>
 
         {/* brand */}
         <h5 class="text-blue-800 underline underline-offset-[12px] mt-4">Brand</h5>
         <div class="mt-4 grid lg:grid-cols-7 md:grid-cols-5 grid-cols-3 gap-4">
-          <BrandHomeItem />
-          <BrandHomeItem />
-          <BrandHomeItem />
-          <BrandHomeItem />
-          <BrandHomeItem />
-          <BrandHomeItem />
-          <BrandHomeItem />
-          <BrandHomeItem />
-          <BrandHomeItem />
-          <BrandHomeItem />
+          {
+            brandSignal.value.map(brand => <BrandHomeItem brand={brand} />)
+          }
         </div>
 
         {/* best seller */}

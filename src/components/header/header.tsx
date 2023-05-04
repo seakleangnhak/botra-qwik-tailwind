@@ -2,12 +2,15 @@ import { $, component$, useSignal } from "@builder.io/qwik"
 import MenuItem from "./menu-item"
 import BrandModal from "../brand/brand-modal"
 import CategoryModal from "../category/category-modal"
+import { useBrandData, useCategoryData } from "~/routes/layout"
 
 export default component$(() => {
 
 
     const showBrand = useSignal(false)
     const showCategory = useSignal(false)
+    const brandSignal = useBrandData()
+    const categorySignal = useCategoryData()
 
     return (
         <>
@@ -16,7 +19,7 @@ export default component$(() => {
                     {/* Logo */}
                     <a aria-label="Logo" href="/">
                         <div class="hidden md:flex p-2 ml-2 gap-4 items-center">
-                            <img alt="BotraComputer Logo" src="/favicon.svg" width="40" />
+                            <img alt="BotraComputer Logo" src="/favicon.svg" width="40px" height="40px" />
                             <div class="font-bold text-2xl">
                                 Botra<span class="text-sky-300">Computer</span>
                             </div>
@@ -37,11 +40,11 @@ export default component$(() => {
 
             {/* modal */}
             {showBrand.value && (
-                <BrandModal onClose={$(() => { showBrand.value = false })} />
+                <BrandModal brands={brandSignal.value} onClose={$(() => { showBrand.value = false })} />
             )}
 
             {showCategory.value && (
-                <CategoryModal onClose={$(() => { showCategory.value = false })} />
+                <CategoryModal category={categorySignal.value} onClose={$(() => { showCategory.value = false })} />
             )}
         </>
     )
