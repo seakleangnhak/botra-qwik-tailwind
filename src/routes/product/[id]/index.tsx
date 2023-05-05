@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
+import type { DocumentHead } from '@builder.io/qwik-city';
 import ProductDescription from "~/components/product/product-description";
 import ProductItem from "~/components/product/product-item";
 
@@ -13,8 +14,6 @@ export default component$(() => {
 
     const productSignal = useProductData()
 
-    document.title = productSignal.value.name
-
     return (
         <div class="md:flex mt-4 justify-center max-w-screen-xl md:mx-auto px-4 gap-4">
             <div class="md:w-[400px] mx-auto md:mx-0 my-2">
@@ -26,3 +25,13 @@ export default component$(() => {
         </div>
     )
 })
+
+export const head: DocumentHead = {
+    title: 'Botra Computer',
+    meta: [
+        {
+            name: 'description',
+            content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+        },
+    ],
+};

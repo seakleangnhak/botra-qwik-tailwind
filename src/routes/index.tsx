@@ -22,10 +22,10 @@ export default component$(() => {
   return (
     // hero
     <>
-      <div
+      {/* <div
         style="background-image: url('/favicon.svg')"
         class="h-[calc(100vw*0.7)] lg:h-[calc(100vh-250px)] max-h-[calc(100vh-250px)] bg-slate-400 bg-cover bg-center bg-fixed">
-      </div>
+      </div> */}
       <div class="max-w-screen-xl xl:mx-auto mx-2 md:mx-4 lg:mx-16 mt-4">
 
         {/* category */}

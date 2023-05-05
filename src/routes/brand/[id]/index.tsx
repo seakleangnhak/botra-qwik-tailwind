@@ -1,5 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 import { routeLoader$ } from '@builder.io/qwik-city';
+import type { DocumentHead } from '@builder.io/qwik-city';
 import ProductSection from '~/components/product/product-section';
 
 export const useBandProductsData = routeLoader$(async (requestEvent) => {
@@ -36,3 +37,13 @@ export default component$(() => {
     </div>
   );
 });
+
+export const head: DocumentHead = {
+  title: 'Botra Computer',
+  meta: [
+    {
+      name: 'description',
+      content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+    },
+  ],
+};
