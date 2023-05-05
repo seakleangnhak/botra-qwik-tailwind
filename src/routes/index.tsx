@@ -1,19 +1,23 @@
 import { component$ } from '@builder.io/qwik';
+import { routeLoader$ } from '@builder.io/qwik-city';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import BrandHomeItem from '~/components/brand/brand-home-item';
 import CategoryHomeItem from '~/components/category/category-home-item';
 import ProductSection from '~/components/product/product-section';
 import { useBrandData, useCategoryData } from './layout';
 
-// interface homeProps {
-//   showBrand: boolean
-//   showCategory: boolean
-// }
+
+export const useNewProductData = routeLoader$(async () => {
+  const res = await fetch("https://botracomputer.com/server/api/product.php?limit=10")
+  const products = (await res.json()).data.data as ProductModel[]
+  return products
+})
 
 export default component$(() => {
 
   const brandSignal = useBrandData()
   const categorySignal = useCategoryData()
+  const newProductsSignal = useNewProductData()
 
   return (
     // hero
@@ -41,7 +45,7 @@ export default component$(() => {
         </div>
 
         {/* best seller */}
-        <ProductSection />
+        <ProductSection title='New' products={newProductsSignal.value} />
       </div>
     </>
   );
