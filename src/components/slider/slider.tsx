@@ -53,7 +53,7 @@ export default component$(() => {
                     {/* <!-- Item --> */}
                     {
                         slideImages.map((image, index) => (
-                            <img src={image} class={getImgStyle(index)} alt={"Botra Computer Slide Image " + index} />
+                            <img key={image} src={image} class={getImgStyle(index)} alt={"Botra Computer Slide Image " + index} />
                         ))
                     }
 
@@ -61,8 +61,8 @@ export default component$(() => {
                 {/* <!-- Slider indicators --> */}
                 <div class="flex absolute bottom-2 md:bottom-2 left-1/2 z-30 space-x-3 -translate-x-1/2">
                     {
-                        slideImages.map((image, index) => (
-                            <button type="button" class={getButtonStyle(index)} aria-label={"Slide " + index}></button>
+                        slideImages.map((_, index) => (
+                            <button key={index} type="button" class={getButtonStyle(index)} aria-label={"Slide " + index}></button>
                         ))
                     }
                 </div>

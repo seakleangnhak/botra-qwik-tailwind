@@ -34,7 +34,7 @@ export default component$(() => {
         <h5 class="text-blue-800 underline underline-offset-[12px]">Categories</h5>
         <div class="mt-4 grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
           {
-            categorySignal.value.map(category => <CategoryHomeItem category={category} />)
+            categorySignal.value.map(category => <CategoryHomeItem key={category.id} category={category} />)
           }
         </div>
 
@@ -42,7 +42,7 @@ export default component$(() => {
         <h5 class="text-blue-800 underline underline-offset-[12px] mt-4">Brand</h5>
         <div class="mt-4 grid lg:grid-cols-7 md:grid-cols-5 grid-cols-3 gap-4">
           {
-            brandSignal.value.map(brand => <BrandHomeItem brand={brand} />)
+            brandSignal.value.map(brand => <BrandHomeItem key={brand.id} brand={brand} />)
           }
         </div>
 

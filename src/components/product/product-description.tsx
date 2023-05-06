@@ -9,7 +9,7 @@ export default component$((props: { product: ProductModel }) => {
 
             {
                 props.product.descr?.split("•").map(line => line && (
-                    <div class="text-base text-gray-800 m-5">
+                    <div key={line} class="text-base text-gray-800 m-5">
                         <span class="text-blue-800">◉ </span>
                         {line}
                     </div>

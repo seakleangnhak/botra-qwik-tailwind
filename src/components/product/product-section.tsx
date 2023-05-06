@@ -13,7 +13,7 @@ export default component$((props: ProductItemProps) => {
             <h5 class="text-blue-800 underline underline-offset-[12px] mt-4">{props.title}</h5>
             <div class="mt-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4">
                 {
-                    props.products.map(product => <ProductItem product={product} />)
+                    props.products.map(product => <ProductItem key={product.id} product={product} />)
                 }
             </div>
         </>

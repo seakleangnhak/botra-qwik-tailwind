@@ -8,12 +8,14 @@ export const useBandProductsData = routeLoader$(async ({ params, redirect }) => 
 
   if (!res.ok) {
     redirect(301, "/")
+    console.log("res.ok", res.ok)
     return null
   } else {
     const products = (await res.json()).data.data as ProductModel[]
 
     if (!products || products.length == 0) {
       redirect(301, "/")
+      console.log("product:", products)
       return null
     }
 
@@ -46,7 +48,7 @@ export default component$(() => {
 
       {
         Object.keys(groupedProduct).map(key => (
-          <ProductSection title={key} products={groupedProduct[key]} />
+          <ProductSection key={key} title={key} products={groupedProduct[key]} />
         ))
       }
 

@@ -42,11 +42,11 @@ export default component$(() => {
 
   return (
     <div class="max-w-screen-xl xl:mx-auto mx-2 md:mx-4 lg:mx-16">
-      <img alt="Brand Name" src={url} class="h-[150px] w-[150px] mx-auto my-4 rounded-md bg-white overflow-hidden object-contain" />
+      <img alt="Brand Name" src={url} class="h-[150px] w-[150px] mx-auto my-4 rounded-md bg-white overflow-hidden " />
 
       {
         Object.keys(groupedProduct).map(key => (
-          <ProductSection title={key} products={groupedProduct[key]} />
+          <ProductSection key={key} title={key} products={groupedProduct[key]} />
         ))
       }
 
