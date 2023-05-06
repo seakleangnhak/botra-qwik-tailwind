@@ -4,15 +4,30 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import ProductDescription from "~/components/product/product-description";
 import ProductItem from "~/components/product/product-item";
 
-export const useProductData = routeLoader$(async (requestEvent) => {
-    const res = await fetch("https://botracomputer.com/server/api/product.php/" + requestEvent.params.id)
-    const product = (await res.json()).data as ProductModel
-    return product
+export const useProductData = routeLoader$(async ({ params, redirect }) => {
+    const res = await fetch("https://botracomputer.com/server/api/product.php/" + params.id)
+
+    if (!res.ok) {
+        redirect(301, "/")
+        return null
+    } else {
+        const product = (await res.json()).data as ProductModel
+
+        if (!product) {
+            redirect(301, "/")
+        }
+
+        return product
+    }
 })
 
 export default component$(() => {
 
     const productSignal = useProductData()
+
+    if (!productSignal || !productSignal.value) {
+        return <></>
+    }
 
     return (
         <div class="md:flex mt-4 justify-center max-w-screen-xl md:mx-auto px-4 gap-4">

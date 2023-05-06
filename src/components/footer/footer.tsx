@@ -5,7 +5,7 @@ export default component$(() => {
     return (
         <footer class="sticky bottom-0 z-20 text-zinc-200 md:hidden">
             <div class="flex justify-center lg:px-20 bg-gradient-to-r from-blue-800 to-blue-700">
-                <MenuItem>Tel: 0962696645</MenuItem>
+                <a href="tel:015818781"><MenuItem>Tel: 015 818 781</MenuItem></a>
             </div>
         </footer>
     )

@@ -13,7 +13,7 @@ export default component$((props: BrandModalProps) => {
         <HeaderModal title="Brand" onClose={props.onClose}>
             <div class="m-4 grid lg:grid-cols-5 md:grid-cols-3 grid-cols-2 gap-4">
                 {
-                    props.brands.map(brand => <BrandHomeItem brand={brand} />)
+                    props.brands.map(brand => <BrandHomeItem brand={brand} closeModal={props.onClose} />)
                 }
             </div>
         </HeaderModal>

@@ -3,15 +3,31 @@ import { routeLoader$ } from '@builder.io/qwik-city';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import ProductSection from '~/components/product/product-section';
 
-export const useCategoryProductsData = routeLoader$(async (requestEvent) => {
-  const res = await fetch(`https://botracomputer.com/server/api/product.php?is_disable=0&limit=10000&category_id=${requestEvent.params.id}`)
-  const products = (await res.json()).data.data as ProductModel[]
-  return products
+export const useCategoryProductsData = routeLoader$(async ({ params, redirect }) => {
+  const res = await fetch(`https://botracomputer.com/server/api/product.php?is_disable=0&limit=10000&category_id=${params.id}`)
+
+  if (!res.ok) {
+    redirect(301, "/")
+    return null
+  } else {
+    const products = (await res.json()).data.data as ProductModel[]
+
+    if (!products || products.length == 0) {
+      redirect(301, "/")
+      return null
+    }
+
+    return products
+  }
 })
 
 export default component$(() => {
 
   const productsSignal = useCategoryProductsData()
+
+  if (!productsSignal.value) {
+    return <></>
+  }
 
   const groupBy = function (xs: any, key: any) {
     return xs.reduce(function (rv: any, x: any) {
@@ -22,11 +38,11 @@ export default component$(() => {
 
   const groupedProduct = groupBy(productsSignal.value, "brand_name")
 
-  const url = `https://ik.imagekit.io/botracomputer/ik-seo/${(productsSignal.value[0].brand_logo ?? "").split(",")[0].replace(".", "/" + productsSignal.value[0].brand_name?.replace(" ", "-") + ".")}?tr=w-${300},h-${300},c-at_max`
+  const url = `https://ik.imagekit.io/botracomputer/ik-seo/${(productsSignal.value[0].category_logo ?? "").split(",")[0].replace(".", "/" + productsSignal.value[0].category_name?.replace(" ", "-") + ".")}?tr=w-${300},h-${300},c-at_max`
 
   return (
     <div class="max-w-screen-xl xl:mx-auto mx-2 md:mx-4 lg:mx-16">
-      <img alt="Brand Name" src={url} class="h-[150px] w-[150px] mx-auto my-4" />
+      <img alt="Brand Name" src={url} class="h-[150px] w-[150px] mx-auto my-4 rounded-md bg-white overflow-hidden object-contain" />
 
       {
         Object.keys(groupedProduct).map(key => (

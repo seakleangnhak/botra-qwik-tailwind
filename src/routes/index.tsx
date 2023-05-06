@@ -5,6 +5,7 @@ import BrandHomeItem from '~/components/brand/brand-home-item';
 import CategoryHomeItem from '~/components/category/category-home-item';
 import ProductSection from '~/components/product/product-section';
 import { useBrandData, useCategoryData } from './layout';
+import Slider from '~/components/slider/slider';
 
 
 export const useNewProductData = routeLoader$(async () => {
@@ -26,6 +27,7 @@ export default component$(() => {
         style="background-image: url('/favicon.svg')"
         class="h-[calc(100vw*0.7)] lg:h-[calc(100vh-250px)] max-h-[calc(100vh-250px)] bg-slate-400 bg-cover bg-center bg-fixed">
       </div> */}
+      <Slider />
       <div class="max-w-screen-xl xl:mx-auto mx-2 md:mx-4 lg:mx-16 mt-4">
 
         {/* category */}
