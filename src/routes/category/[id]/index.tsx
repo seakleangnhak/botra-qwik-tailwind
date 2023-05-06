@@ -1,10 +1,10 @@
-import { component$ } from '@builder.io/qwik';
-import { routeLoader$ } from '@builder.io/qwik-city';
+import { component$, useTask$ } from '@builder.io/qwik';
+import { routeLoader$, useDocumentHead, useLocation } from '@builder.io/qwik-city';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import ProductSection from '~/components/product/product-section';
 
 export const useCategoryProductsData = routeLoader$(async ({ params, redirect }) => {
-  const res = await fetch(`https://botracomputer.com/server/api/product.php?is_disable=0&limit=10000&category_id=${params.id}`)
+  const res = await fetch(`https://admin.botracomputer.com/server/api/product.php?is_disable=0&limit=10000&category_id=${params.id}`)
 
   if (!res.ok) {
     redirect(301, "/")
@@ -29,6 +29,61 @@ export default component$(() => {
     return <></>
   }
 
+  const head = useDocumentHead()
+  const loc = useLocation()
+  useTask$(() => {
+    const imageUrl = `https://ik.imagekit.io/botracomputer/ik-seo/${(productsSignal.value[0].category_logo ?? "").split(",")[0].replace(".", "/" + productsSignal.value[0].category_name?.replace(" ", "-") + ".")}`
+    head.title = productsSignal.value[0].category_name
+    head.meta = head.meta.concat([
+      {
+        name: 'description',
+        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      },
+      // FaceBook Meta Tags
+      {
+        property: 'og:url',
+        content: loc.url.href,
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:title',
+        content: 'Botra Computer',
+      },
+      {
+        property: 'og:description',
+        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      },
+      {
+        property: 'og:image',
+        content: imageUrl,
+      },
+      // Twitter Meta Tags
+      {
+        property: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        property: 'twitter:domain',
+        content: loc.url.href,
+      },
+      {
+        property: 'twitter:title',
+        content: 'Botra Computer',
+      },
+      {
+        property: 'twitter:description',
+        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      },
+      {
+        property: 'twitter:image',
+        content: imageUrl,
+      },
+    ])
+  })
+
   const groupBy = function (xs: any, key: any) {
     return xs.reduce(function (rv: any, x: any) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
@@ -42,7 +97,7 @@ export default component$(() => {
 
   return (
     <div class="max-w-screen-xl xl:mx-auto mx-2 md:mx-4 lg:mx-16">
-      <img alt="Brand Name" src={url} class="h-[150px] w-[150px] mx-auto my-4 rounded-md bg-white overflow-hidden " />
+      <img alt="Brand Name" src={url} class="h-[150px] w-[150px] mx-auto my-4 rounded-md bg-white overflow-hidden object-contain" />
 
       {
         Object.keys(groupedProduct).map(key => (

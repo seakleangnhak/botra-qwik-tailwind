@@ -4,7 +4,7 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import ProductSection from '~/components/product/product-section';
 
 export const useBandProductsData = routeLoader$(async ({ params, redirect }) => {
-  const res = await fetch(`https://botracomputer.com/server/api/product.php?is_disable=0&limit=10000&brand_id=${params.id}`)
+  const res = await fetch(`https://admin.botracomputer.com/server/api/product.php?is_disable=0&limit=10000&brand_id=${params.id}`)
 
   if (!res.ok) {
     redirect(301, "/")

@@ -25,13 +25,13 @@ export default component$((props: BrandHomeItemProps) => {
     return props.closeModal ? (
         <div onclick$={itemClick}>
             <div class="w-full border-[2px] bg-white border-blue-600 rounded-md overflow-hidden hover:shadow-lg ease-in-out hover:-translate-y-1 transition-all">
-                <img alt={props.brand.name} src={url} class="w-full aspect-square" />
+                <img alt={props.brand.name} src={url} class="w-full aspect-square object-contain" />
             </div>
         </div>
     ) : (
         <Link prefetch={true} href={"/brand/" + props.brand.id}>
             <div class="w-full border-[2px] bg-white border-blue-600 rounded-md overflow-hidden hover:shadow-lg ease-in-out hover:-translate-y-1 transition-all">
-                <img alt={props.brand.name} src={url} class="w-full aspect-square" />
+                <img alt={props.brand.name} src={url} class="w-full aspect-square object-contain" />
             </div>
         </Link>
     )
