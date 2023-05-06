@@ -49,14 +49,16 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
         return { title: "Botra Computer" }
     }
 
-    const imageUrl = `https://ik.imagekit.io/botracomputer/ik-seo/${(product.images ?? "").split(",")[0].replace(".", "/" + product.name.replace(" ", "-") + ".")}`
+    const title = `${product.brand_name}  ${product.name} @ Botra Computer KH, Cambodia`
+    const desc = `${product.brand_name}  ${product.name} are available at Botra Computer @ Phnom Penh Cambodia. ${product.brand_name}  ${product.name} are available for both retail and wholesale. Tel: (012/015/068) 818 781`
+    const imageUrl = `https://ik.imagekit.io/botracomputer/ik-seo/${(product.images ?? "").split(",")[0].replace(".", "/" + product.name.replaceAll(" ", "-") + ".")}`
 
     return {
-        title: product.name,
+        title: title,
         meta: [
             {
                 name: 'description',
-                content: product.descr,
+                content: desc,
             },
             // FaceBook Meta Tags
             {
@@ -69,11 +71,11 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
             },
             {
                 property: 'og:title',
-                content: 'Botra Computer',
+                content: title,
             },
             {
                 property: 'og:description',
-                content: product.name + "\nYou can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+                content: desc,
             },
             {
                 property: 'og:image',
@@ -90,11 +92,11 @@ export const head: DocumentHead = ({ resolveValue, url }) => {
             },
             {
                 property: 'twitter:title',
-                content: 'Botra Computer',
+                content: title,
             },
             {
                 property: 'twitter:description',
-                content: product.name + "\nYou can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+                content: desc,
             },
             {
                 property: 'twitter:image',
