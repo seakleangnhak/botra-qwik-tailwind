@@ -3,9 +3,9 @@ import { component$ } from "@builder.io/qwik";
 export default component$((props: { product: ProductModel }) => {
     return (
         <div class="border-[2px] border-blue-600 rounded-md bg-white overflow-hidden">
-            <div class="text-center text-xl text-blue-600 font-bold p-4">
+            <h1 class="text-center text-xl text-blue-600 font-bold p-4">
                 {props.product.name}
-            </div>
+            </h1>
 
             {
                 props.product.descr?.split("•").map(line => line && (

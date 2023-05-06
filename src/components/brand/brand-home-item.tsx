@@ -15,7 +15,7 @@ export default component$((props: BrandHomeItemProps) => {
     const nav = useNavigate()
 
     const itemClick = $(() => {
-        nav("/brand/" + props.brand.id)
+        nav(`/brand/${props.brand.name.trim()}-${props.brand.id}`.replaceAll(" ", "-").replaceAll("(", "").replaceAll(")", "").replaceAll("%", ""))
 
         if (props.closeModal) {
             props.closeModal()
@@ -29,7 +29,7 @@ export default component$((props: BrandHomeItemProps) => {
             </div>
         </div>
     ) : (
-        <Link prefetch={true} href={"/brand/" + props.brand.id}>
+        <Link prefetch={true} href={`/brand/${props.brand.name.trim()}-${props.brand.id}`.replaceAll(" ", "-").replaceAll("(", "").replaceAll(")", "").replaceAll("%", "")}>
             <div class="w-full border-[2px] bg-white border-blue-600 rounded-md overflow-hidden hover:shadow-lg ease-in-out hover:-translate-y-1 transition-all">
                 <img alt={props.brand.name} src={url} class="w-full aspect-square object-contain" />
             </div>
