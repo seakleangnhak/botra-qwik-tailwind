@@ -56,12 +56,66 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: 'Botra Computer',
-  meta: [
-    {
-      name: 'description',
-      content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
-    },
-  ],
+export const head: DocumentHead = ({ resolveValue, url }) => {
+
+  const products = resolveValue(useBandProductsData)
+
+  if (!products || products.length == 0) {
+    return { title: "Botra Computer" }
+  }
+
+  const product = products[0]
+  const imageUrl = `https://ik.imagekit.io/botracomputer/ik-seo/${(product.brand_logo ?? "").split(",")[0].replace(".", "/" + product.brand_name?.replace(" ", "-") + ".")}`
+
+  return {
+    title: product.brand_name,
+    meta: [
+      {
+        name: 'description',
+        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      },
+      // FaceBook Meta Tags
+      {
+        property: 'og:url',
+        content: url.href,
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:title',
+        content: 'Botra Computer',
+      },
+      {
+        property: 'og:description',
+        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      },
+      {
+        property: 'og:image',
+        content: imageUrl,
+      },
+      // Twitter Meta Tags
+      {
+        property: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        property: 'twitter:domain',
+        content: url.href,
+      },
+      {
+        property: 'twitter:title',
+        content: 'Botra Computer',
+      },
+      {
+        property: 'twitter:description',
+        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      },
+      {
+        property: 'twitter:image',
+        content: imageUrl,
+      },
+    ],
+  }
 };

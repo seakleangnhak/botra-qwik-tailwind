@@ -1,5 +1,5 @@
-import { component$, useTask$ } from '@builder.io/qwik';
-import { routeLoader$, useDocumentHead, useLocation } from '@builder.io/qwik-city';
+import { component$ } from '@builder.io/qwik';
+import { routeLoader$ } from '@builder.io/qwik-city';
 import type { DocumentHead } from '@builder.io/qwik-city';
 import ProductSection from '~/components/product/product-section';
 
@@ -29,61 +29,6 @@ export default component$(() => {
     return <></>
   }
 
-  const head = useDocumentHead()
-  const loc = useLocation()
-  useTask$(() => {
-    const imageUrl = `https://ik.imagekit.io/botracomputer/ik-seo/${(productsSignal.value[0].category_logo ?? "").split(",")[0].replace(".", "/" + productsSignal.value[0].category_name?.replace(" ", "-") + ".")}`
-    head.title = productsSignal.value[0].category_name
-    head.meta = head.meta.concat([
-      {
-        name: 'description',
-        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
-      },
-      // FaceBook Meta Tags
-      {
-        property: 'og:url',
-        content: loc.url.href,
-      },
-      {
-        property: 'og:type',
-        content: 'website',
-      },
-      {
-        property: 'og:title',
-        content: 'Botra Computer',
-      },
-      {
-        property: 'og:description',
-        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
-      },
-      {
-        property: 'og:image',
-        content: imageUrl,
-      },
-      // Twitter Meta Tags
-      {
-        property: 'twitter:card',
-        content: 'summary_large_image',
-      },
-      {
-        property: 'twitter:domain',
-        content: loc.url.href,
-      },
-      {
-        property: 'twitter:title',
-        content: 'Botra Computer',
-      },
-      {
-        property: 'twitter:description',
-        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
-      },
-      {
-        property: 'twitter:image',
-        content: imageUrl,
-      },
-    ])
-  })
-
   const groupBy = function (xs: any, key: any) {
     return xs.reduce(function (rv: any, x: any) {
       (rv[x[key]] = rv[x[key]] || []).push(x);
@@ -109,12 +54,66 @@ export default component$(() => {
   );
 });
 
-export const head: DocumentHead = {
-  title: 'Botra Computer',
-  meta: [
-    {
-      name: 'description',
-      content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
-    },
-  ],
+export const head: DocumentHead = ({ resolveValue, url }) => {
+
+  const products = resolveValue(useCategoryProductsData)
+
+  if (!products || products.length == 0) {
+    return { title: "Botra Computer" }
+  }
+
+  const product = products[0]
+  const imageUrl = `https://ik.imagekit.io/botracomputer/ik-seo/${(product.category_logo ?? "").split(",")[0].replace(".", "/" + product.category_name?.replace(" ", "-") + ".")}`
+
+  return {
+    title: product.category_name,
+    meta: [
+      {
+        name: 'description',
+        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      },
+      // FaceBook Meta Tags
+      {
+        property: 'og:url',
+        content: url.href,
+      },
+      {
+        property: 'og:type',
+        content: 'website',
+      },
+      {
+        property: 'og:title',
+        content: 'Botra Computer',
+      },
+      {
+        property: 'og:description',
+        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      },
+      {
+        property: 'og:image',
+        content: imageUrl,
+      },
+      // Twitter Meta Tags
+      {
+        property: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        property: 'twitter:domain',
+        content: url.href,
+      },
+      {
+        property: 'twitter:title',
+        content: 'Botra Computer',
+      },
+      {
+        property: 'twitter:description',
+        content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      },
+      {
+        property: 'twitter:image',
+        content: imageUrl,
+      },
+    ],
+  }
 };
