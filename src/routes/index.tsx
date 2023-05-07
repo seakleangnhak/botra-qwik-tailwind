@@ -53,7 +53,11 @@ export const head: DocumentHead = {
   meta: [
     {
       name: 'description',
-      content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Tel: (012/015/068) 818 781",
+    },
+    {
+      name: 'robots',
+      content: 'index,follow',
     },
     // FaceBook Meta Tags
     {
@@ -70,7 +74,7 @@ export const head: DocumentHead = {
     },
     {
       property: 'og:description',
-      content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Tel: (012/015/068) 818 781",
     },
     {
       property: 'og:image',
@@ -91,7 +95,7 @@ export const head: DocumentHead = {
     },
     {
       property: 'twitter:description',
-      content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Contact us to discuss or want to know more info about PC's thing.",
+      content: "You can find any laptop or its accessories right here! Price, Quality &Service guarantee! We also Build PC for all kind of Budget. Tel: (012/015/068) 818 781",
     },
     {
       property: 'twitter:image',
