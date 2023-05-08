@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
+import { Image } from "@unpic/qwik";
 
 
 interface CategoryHomeItemProps {
@@ -14,7 +15,7 @@ export default component$((props: CategoryHomeItemProps) => {
         <Link prefetch={true} href={`/category/${props.category.name.trim()}-${props.category.id}`.replaceAll(" ", "-").replaceAll("(", "").replaceAll(")", "").replaceAll("%", "")}>
             <div class="flex items-center border-[2px] border-blue-600 rounded-md bg-white overflow-hidden hover:shadow-lg ease-in-out hover:-translate-y-1 transition-all">
                 <div class="h-[50px] mx-2 my-1 aspect-square items-center">
-                    <img alt={props.category.name} src={url} class="h-full max-w-[50px] mx-auto object-contain" />
+                    <Image layout="fullWidth" aspectRatio={1} loading="lazy" decoding="async" alt={props.category.name} src={url} class="h-full max-w-[50px] mx-auto object-contain" />
                 </div>
                 <span class="text-md font-bold mx-2">{props.category.name}</span>
             </div>

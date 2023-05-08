@@ -1,6 +1,7 @@
 import { component$, $ } from "@builder.io/qwik";
 import type { PropFunction } from "@builder.io/qwik";
 import { useNavigate } from "@builder.io/qwik-city";
+import { Image } from "@unpic/qwik";
 
 interface CategoryModalItemProps {
     category: CategoryModel
@@ -25,7 +26,7 @@ export default component$((props: CategoryModalItemProps) => {
         <div onclick$={itemClick}>
             <div class="w-full border-[2px] border-blue-600 rounded-md bg-white overflow-hidden cursor-pointer hover:shadow-lg ease-in-out hover:-translate-y-1 transition-all">
                 <div class="w-full aspect-square">
-                    <img alt={props.category.name} src={url} class="h-full max-w-full mx-auto object-contain" />
+                    <Image layout="fullWidth" aspectRatio={1} loading="lazy" decoding="async" alt={props.category.name} src={url} class="h-full max-w-full mx-auto object-contain" />
                 </div>
                 <div class="flex justify-center p-3 text-base">
                     <span>{props.category.name}</span>

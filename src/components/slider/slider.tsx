@@ -1,4 +1,5 @@
 import { component$, useSignal, $, useVisibleTask$ } from "@builder.io/qwik";
+import { Image } from "@unpic/qwik";
 
 export default component$(() => {
 
@@ -53,7 +54,7 @@ export default component$(() => {
                     {/* <!-- Item --> */}
                     {
                         slideImages.map((image, index) => (
-                            <img key={image} src={image} class={getImgStyle(index)} alt={"Botra Computer Slide Image " + index} />
+                            <Image layout="fullWidth" aspectRatio={1} loading="lazy" decoding="async" key={image} src={image} class={getImgStyle(index)} alt={"Botra Computer Slide Image " + index} />
                         ))
                     }
 

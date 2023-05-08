@@ -4,6 +4,7 @@ import BrandModal from "../brand/brand-modal"
 import CategoryModal from "../category/category-modal"
 import { useBrandData, useCategoryData } from "~/routes/layout"
 import { Link } from "@builder.io/qwik-city"
+import { Image } from "@unpic/qwik"
 
 export default component$(() => {
 
@@ -19,7 +20,7 @@ export default component$(() => {
                     {/* Logo */}
                     <Link prefetch={true} aria-label="Logo" href="/">
                         <div class="hidden md:flex p-2 ml-2 gap-4 items-center">
-                            <img alt="BotraComputer Logo" src={`https://ik.imagekit.io/botracomputer/logo.png?tr=w-${50},h-${50},c-at_max`} width="40px" height="40px" class="object-contain" />
+                            <Image layout="fixed" width={40} height={40} aspectRatio={1} loading="lazy" decoding="async" alt="BotraComputer Logo" src={`https://ik.imagekit.io/botracomputer/logo.png?tr=w-${50},h-${50},c-at_max`} class="object-contain" />
                             <div class="font-bold text-2xl">
                                 Botra<span class="text-sky-300">Computer</span>
                             </div>

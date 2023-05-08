@@ -1,5 +1,6 @@
 import { component$ } from "@builder.io/qwik";
 import { Link } from "@builder.io/qwik-city";
+import { Image } from "@unpic/qwik";
 
 export default component$((props: { product: ProductModel, productPage?: boolean }) => {
 
@@ -10,7 +11,7 @@ export default component$((props: { product: ProductModel, productPage?: boolean
     return (
         <Link prefetch={true} href={productUrl}>
             <div class={style}>
-                <img alt={`${props.product.brand_name} ${props.product.name}`} src={url} class="w-full aspect-square object-contain" />
+                <Image alt={`${props.product.brand_name} ${props.product.name}`} src={url} layout="fullWidth" aspectRatio={1} loading="lazy" decoding="async" class="w-full aspect-square object-contain" />
                 <div class="flex mt-auto justify-between px-[6px] text-base">
                     {
                         props.productPage ?
