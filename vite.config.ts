@@ -8,7 +8,7 @@ export default defineConfig(() => {
     plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
     preview: {
       headers: {
-        'Cache-Control': 'public, max-age=600',
+        'Cache-Control': 'public, max-age=0',
       },
     },
   };
