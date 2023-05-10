@@ -25,6 +25,7 @@
     "@builder.io/qwik": "0.104.0",
     "@builder.io/qwik-city": "~0.104.0",
     "@types/eslint": "8.37.0",
+    "@types/file-manager": "^2.0.0",
     "@types/node": "^18.16.0",
     "@typescript-eslint/eslint-plugin": "5.59.1",
     "@typescript-eslint/parser": "5.59.1",

@@ -4,21 +4,19 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import { Image } from '@unpic/qwik';
 import ProductSection from '~/components/product/product-section';
 
-export const useBandProductsData = routeLoader$(async ({ params, redirect }) => {
+export const useBrandProductsData = routeLoader$(async ({ params, redirect }) => {
   const ids = params.id.split("-")
   const id = ids[ids.length - 1]
-  const res = await fetch(`https://admin.botracomputer.com/server/api/product.php?is_disable=0&limit=10000&brand_id=${id}`)
+  const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/server/api/product.php?is_disable=0&limit=10000&brand_id=${id}`)
 
   if (!res.ok) {
     redirect(301, "/")
-    console.log("res.ok", res.ok)
     return null
   } else {
     const products = (await res.json()).data.data as ProductModel[]
 
     if (!products || products.length == 0) {
       redirect(301, "/")
-      console.log("product:", products)
       return null
     }
 
@@ -28,7 +26,7 @@ export const useBandProductsData = routeLoader$(async ({ params, redirect }) => 
 
 export default component$(() => {
 
-  const productsSignal = useBandProductsData()
+  const productsSignal = useBrandProductsData()
 
   if (!productsSignal.value) {
     return <></>
@@ -61,7 +59,7 @@ export default component$(() => {
 
 export const head: DocumentHead = ({ resolveValue, url }) => {
 
-  const products = resolveValue(useBandProductsData)
+  const products = resolveValue(useBrandProductsData)
 
   if (!products || products.length == 0) {
     return { title: "Botra Computer" }

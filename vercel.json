@@ -1,11 +1,11 @@
 {
   "headers": [
     {
-      "source": "/build/(.*)",
+      "source": "/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=2678400, immutable"
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=2678400"
         }
       ]
     }

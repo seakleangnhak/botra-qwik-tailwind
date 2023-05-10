@@ -4,21 +4,25 @@ import type { DocumentHead } from '@builder.io/qwik-city';
 import BrandHomeItem from '~/components/brand/brand-home-item';
 import CategoryHomeItem from '~/components/category/category-home-item';
 import ProductSection from '~/components/product/product-section';
-import { useBrandData, useCategoryData } from './layout';
+import { useBrandsCategoriesData } from './layout';
 import Slider from '~/components/slider/slider';
 
 
 export const useNewProductData = routeLoader$(async () => {
-  const res = await fetch("https://admin.botracomputer.com/server/api/product.php?limit=10")
+  const res = await fetch(`${import.meta.env.PUBLIC_API_URL}/server/api/product.php?limit=10`)
   const products = (await res.json()).data.data as ProductModel[]
   return products
 })
 
-export default component$(() => {
+export const useIndexData = routeLoader$(async (requestEvent) => {
+  const brandsCategories = await requestEvent.resolveValue(useBrandsCategoriesData)
+  const newProducts = await requestEvent.resolveValue(useNewProductData)
 
-  const brandSignal = useBrandData()
-  const categorySignal = useCategoryData()
-  const newProductsSignal = useNewProductData()
+  return { brandsCategories: brandsCategories, newProducts: newProducts }
+})
+
+export default component$(() => {
+  const newProductsSignal = useIndexData()
 
   return (
     <>
@@ -29,7 +33,7 @@ export default component$(() => {
         <h5 class="text-blue-800 underline underline-offset-[12px]">Categories</h5>
         <div class="mt-4 grid lg:grid-cols-5 md:grid-cols-4 grid-cols-2 gap-4">
           {
-            categorySignal.value.map(category => <CategoryHomeItem key={category.id} category={category} />)
+            newProductsSignal.value.brandsCategories.categories.map(category => <CategoryHomeItem key={category.id} category={category} />)
           }
         </div>
 
@@ -37,12 +41,12 @@ export default component$(() => {
         <h5 class="text-blue-800 underline underline-offset-[12px] mt-4">Brand</h5>
         <div class="mt-4 grid lg:grid-cols-7 md:grid-cols-5 grid-cols-3 gap-4">
           {
-            brandSignal.value.map(brand => <BrandHomeItem key={brand.id} brand={brand} />)
+            newProductsSignal.value.brandsCategories.brands.map(brand => <BrandHomeItem key={brand.id} brand={brand} />)
           }
         </div>
 
         {/* best seller */}
-        <ProductSection title='New' products={newProductsSignal.value} />
+        <ProductSection title='New' products={newProductsSignal.value.newProducts} />
       </div>
     </>
   );
