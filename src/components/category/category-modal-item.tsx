@@ -15,7 +15,7 @@ export default component$((props: CategoryModalItemProps) => {
     const nav = useNavigate()
 
     const itemClick = $(() => {
-        nav("/category/" + props.category.id)
+        nav(`/category/${props.category.name.trim()}-${props.category.id}`.replaceAll(" ", "-").replaceAll("(", "").replaceAll(")", "").replaceAll("%", ""))
         if (props.closeModal) {
             props.closeModal()
         }
@@ -26,7 +26,7 @@ export default component$((props: CategoryModalItemProps) => {
         <div onclick$={itemClick}>
             <div class="w-full border-[2px] border-blue-600 rounded-md bg-white overflow-hidden cursor-pointer hover:shadow-lg ease-in-out hover:-translate-y-1 transition-all">
                 <div class="w-full aspect-square">
-                    <Image layout="fullWidth" aspectRatio={1} loading="lazy" decoding="async" alt={props.category.name} src={url} class="h-full max-w-full mx-auto object-contain" />
+                    <Image layout="fullWidth" loading="lazy" decoding="async" alt={props.category.name} src={url} class="h-full max-w-full mx-auto aspect-square object-contain" />
                 </div>
                 <div class="flex justify-center p-3 text-base">
                     <span>{props.category.name}</span>

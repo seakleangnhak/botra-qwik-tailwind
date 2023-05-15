@@ -11,14 +11,10 @@ export default component$((props: { product: ProductModel, productPage?: boolean
     const event_text = props.product.event_text ?? (props.product.in_stock ? "" : "Out of stock")
     const event_color = props.product.event_color ?? (props.product.in_stock ? "" : "#ffff0000") // red
 
-    if (!props.product.in_stock) {
-        console.log(url);
-    }
-
     return (
         <Link prefetch={true} href={productUrl}>
             <div class={style}>
-                <Image alt={`${props.product.brand_name} ${props.product.name}`} src={url} layout="fullWidth" aspectRatio={1} loading="lazy" decoding="async" class="w-full aspect-square object-contain" />
+                <Image alt={`${props.product.brand_name} ${props.product.name}`} src={url} layout="fullWidth" loading="lazy" decoding="async" class="w-full aspect-square object-contain" />
                 <div class="flex mt-auto justify-between px-[6px] text-base">
                     {
                         props.productPage ?

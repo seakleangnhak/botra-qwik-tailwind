@@ -26,13 +26,13 @@ export default component$((props: BrandHomeItemProps) => {
     return props.closeModal ? (
         <div onclick$={itemClick}>
             <div class="w-full border-[2px] bg-white border-blue-600 rounded-md overflow-hidden hover:shadow-lg ease-in-out hover:-translate-y-1 transition-all">
-                <Image layout="fullWidth" aspectRatio={1} loading="lazy" decoding="async" alt={props.brand.name} src={url} class="w-full aspect-square object-contain" />
+                <Image layout="fullWidth" loading="lazy" decoding="async" alt={props.brand.name} src={url} class="w-full aspect-square object-contain" />
             </div>
         </div>
     ) : (
         <Link prefetch={true} href={`/brand/${props.brand.name.trim()}-${props.brand.id}`.replaceAll(" ", "-").replaceAll("(", "").replaceAll(")", "").replaceAll("%", "")}>
             <div class="w-full border-[2px] bg-white border-blue-600 rounded-md overflow-hidden hover:shadow-lg ease-in-out hover:-translate-y-1 transition-all">
-                <Image layout="fullWidth" aspectRatio={1} loading="lazy" decoding="async" alt={props.brand.name} src={url} class="w-full aspect-square object-contain" />
+                <Image layout="fullWidth" loading="lazy" decoding="async" alt={props.brand.name} src={url} class="w-full aspect-square object-contain" />
             </div>
         </Link>
     )
