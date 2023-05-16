@@ -15,7 +15,7 @@ export default component$((props: CategoryModalItemProps) => {
     const nav = useNavigate()
 
     const itemClick = $(() => {
-        nav(`/category/${props.category.name.trim()}-${props.category.id}`.replaceAll(" ", "-").replaceAll("(", "").replaceAll(")", "").replaceAll("%", ""))
+        nav(`/category/${props.category.name.replace(/[^a-zA-Z0-9 ]/g, '').trim()}-${props.category.id}`.replaceAll(" ", "-").replaceAll("---", "-").replaceAll("--", "-"))
         if (props.closeModal) {
             props.closeModal()
         }

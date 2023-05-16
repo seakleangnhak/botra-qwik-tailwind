@@ -16,7 +16,7 @@ export default component$((props: BrandHomeItemProps) => {
     const nav = useNavigate()
 
     const itemClick = $(() => {
-        nav(`/brand/${props.brand.name.trim()}-${props.brand.id}`.replaceAll(" ", "-").replaceAll("(", "").replaceAll(")", "").replaceAll("%", ""))
+        nav(`/brand/${props.brand.name.replace(/[^a-zA-Z0-9 ]/g, '').trim()}-${props.brand.id}`.replaceAll(" ", "-").replaceAll("---", "-").replaceAll("--", "-"))
 
         if (props.closeModal) {
             props.closeModal()
