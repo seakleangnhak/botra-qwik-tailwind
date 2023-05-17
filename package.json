@@ -42,7 +42,6 @@
     "vite-tsconfig-paths": "4.2.0"
   },
   "dependencies": {
-    "@unpic/qwik": "^0.0.17",
-    "@vercel/analytics": "^1.0.1"
+    "@unpic/qwik": "^0.0.17"
   }
 }

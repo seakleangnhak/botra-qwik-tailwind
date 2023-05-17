@@ -4,7 +4,6 @@ import { RouterHead } from './components/router-head/router-head';
 
 import './global.css';
 import { QwikPartytown } from './components/partytown/partytown';
-import { inject } from '@vercel/analytics';
 
 export default component$(() => {
   /**
@@ -14,8 +13,6 @@ export default component$(() => {
    * Don't remove the `<head>` and `<body>` elements.
    */
 
-  inject();
-
   return (
     <QwikCityProvider>
       <head>
@@ -24,6 +21,9 @@ export default component$(() => {
         <RouterHead />
         <QwikPartytown forward={['dataLayer.push']} />
         <script async type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-7XL1BKJ430" />
+        <script async type="text/partytown">
+          {"window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XL1BKJ430');"}
+        </script>
       </head>
       <body lang="en">
         <RouterOutlet />
