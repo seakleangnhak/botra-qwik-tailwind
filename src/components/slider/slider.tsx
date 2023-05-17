@@ -4,11 +4,11 @@ import { Image } from "@unpic/qwik";
 export default component$(() => {
 
     const slideImages = [
-        `https://ik.imagekit.io/botracomputer/uploads/slide/home_banner_1.jpeg?tr=w-${1280},h-${1280},c-at_max`,
-        // `https://ik.imagekit.io/botracomputer/uploads/slide/home_banner_2.jpeg?tr=w-${1280},h-${1280},c-at_max`,
-        `https://ik.imagekit.io/botracomputer/uploads/slide/home_banner_3.jpeg?tr=w-${1280},h-${1280},c-at_max`,
-        `https://ik.imagekit.io/botracomputer/uploads/slide/home_banner_4.jpg?tr=w-${1280},h-${1280},c-at_max`,
-        `https://ik.imagekit.io/botracomputer/uploads/slide/home_banner_5.jpg?tr=w-${1280},h-${1280},c-at_max`,
+        `https://ik.imagekit.io/botracomputer/uploads/slide/home_banner_1.jpeg`,
+        // `https://ik.imagekit.io/botracomputer/uploads/slide/home_banner_2.jpeg`,
+        `https://ik.imagekit.io/botracomputer/uploads/slide/home_banner_3.jpeg`,
+        `https://ik.imagekit.io/botracomputer/uploads/slide/home_banner_4.jpg`,
+        `https://ik.imagekit.io/botracomputer/uploads/slide/home_banner_5.jpg`,
     ]
 
     const currentIndexSignal = useSignal(0)
@@ -37,6 +37,21 @@ export default component$(() => {
         }
     }
 
+    const allImgSize = [360, 380, 400, 640, 768, 1024, 1280]
+
+    const getImgSrcset = (image: string) => {
+        let scrSet = ""
+
+        allImgSize.forEach((size, index) => {
+            scrSet += `${image}?tr=w-${size},h-${size},c-at_max ${size}w`
+            if (index < allImgSize.length - 1) {
+                scrSet += ','
+            }
+        });
+
+        return scrSet
+    }
+
     useVisibleTask$((taskContext) => {
         const interval = setInterval(() => {
             nexSlide()
@@ -54,7 +69,12 @@ export default component$(() => {
                     {/* <!-- Item --> */}
                     {
                         slideImages.map((image, index) => (
-                            <Image layout="fullWidth" loading={index == 0 ? "eager" : "lazy"} decoding="async" key={image} src={image} class={getImgStyle(index)} alt={"Botra Computer Slide Image " + index} />
+                            <Image layout="fullWidth" loading={index == 0 ? "eager" : "lazy"}
+                                decoding="async" key={image}
+                                srcSet={getImgSrcset(image)}
+                                src={`${image}?tr=w-${640},h-${640},c-at_max`}
+                                class={getImgStyle(index)} alt={"Botra Computer Slide Image " + index}
+                            />
                         ))
                     }
 

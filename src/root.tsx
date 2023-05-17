@@ -21,9 +21,7 @@ export default component$(() => {
         <RouterHead />
         <QwikPartytown forward={['dataLayer.push']} />
         <script async type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-7XL1BKJ430" />
-        <script async type="text/partytown">
-          {"window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XL1BKJ430');"}
-        </script>
+        {/* <script async type="text/partytown" dangerouslySetInnerHTML={"window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XL1BKJ430');"} /> */}
       </head>
       <body lang="en">
         <RouterOutlet />
