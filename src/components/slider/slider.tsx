@@ -54,7 +54,7 @@ export default component$(() => {
                     {/* <!-- Item --> */}
                     {
                         slideImages.map((image, index) => (
-                            <Image layout="fullWidth" loading="lazy" decoding="async" key={image} src={image} class={getImgStyle(index)} alt={"Botra Computer Slide Image " + index} />
+                            <Image layout="fullWidth" loading={index == 0 ? "eager" : "lazy"} decoding="async" key={image} src={image} class={getImgStyle(index)} alt={"Botra Computer Slide Image " + index} />
                         ))
                     }
 
