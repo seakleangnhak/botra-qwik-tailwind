@@ -6,6 +6,9 @@ import './global.css';
 import { QwikPartytown } from './components/partytown/partytown';
 
 export default component$(() => {
+
+  const googleScript = "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XL1BKJ430');"
+
   /**
    * The root of a QwikCity site always start with the <QwikCityProvider> component,
    * immediately followed by the document's <head> and <body>.
@@ -21,7 +24,7 @@ export default component$(() => {
         <RouterHead />
         <QwikPartytown forward={['dataLayer.push']} />
         <script async type="text/partytown" src="https://www.googletagmanager.com/gtag/js?id=G-7XL1BKJ430" />
-        {/* <script async type="text/partytown" dangerouslySetInnerHTML={"window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XL1BKJ430');"} /> */}
+        <script type="text/partytown" dangerouslySetInnerHTML={googleScript} />
       </head>
       <body lang="en">
         <RouterOutlet />
