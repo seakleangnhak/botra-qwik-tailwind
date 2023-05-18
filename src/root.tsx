@@ -7,7 +7,11 @@ import { QwikPartytown } from './components/partytown/partytown';
 
 export default component$(() => {
 
-  const googleScript = "window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-7XL1BKJ430');"
+  const googleScript = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-7XL1BKJ430');`
 
   /**
    * The root of a QwikCity site always start with the <QwikCityProvider> component,
