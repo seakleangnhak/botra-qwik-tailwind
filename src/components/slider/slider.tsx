@@ -83,7 +83,7 @@ export default component$(() => {
                 <div class="flex absolute bottom-2 md:bottom-2 left-1/2 z-30 space-x-3 -translate-x-1/2">
                     {
                         slideImages.map((_, index) => (
-                            <button key={index} type="button" class={getButtonStyle(index)} aria-label={"Slide " + index}></button>
+                            <div key={index} class={getButtonStyle(index)}></div>
                         ))
                     }
                 </div>
