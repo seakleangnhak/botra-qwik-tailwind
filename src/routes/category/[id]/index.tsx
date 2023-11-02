@@ -38,7 +38,7 @@ export default component$(() => {
     }, {});
   }
 
-  const groupedProduct = groupBy(productsSignal.value, "brand_name")
+  const groupedProduct = groupBy(productsSignal.value.sort((a, b) => (a.brand_name ?? "").localeCompare(b.brand_name ?? "")), "brand_name")
 
   const url = `https://ik.imagekit.io/botracomputer/ik-seo/${(productsSignal.value[0].category_logo ?? "").split(",")[0].replace(".", "/" + productsSignal.value[0].category_name?.replace(" ", "-") + ".")}?tr=w-${300},h-${300},c-at_max`
 
