@@ -16,7 +16,7 @@ export const useBrandProductsData = routeLoader$(async ({ params, redirect }) =>
     const products = (await res.json()).data.data as ProductModel[]
 
     if (!products || products.length == 0) {
-      redirect(301, "/")
+      redirect(301, "/") 
       return null
     }
 
